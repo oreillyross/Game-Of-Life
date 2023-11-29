@@ -28,16 +28,18 @@ class LifeGrid:
     } & self.pattern.alive_cells
     come_alive = {
       cell for cell, num in num_neighbors.items() if num == 3
-    } - self.pattern.alive_cells self.pattern.alive_cells = stay_alive | come_alive
+    } - self.pattern.alive_cells 
+    self.pattern.alive_cells = stay_alive | come_alive
     
 
   def as_string(self, bbox):
     start_row, start_col, end_row, end_col = bbox
     display = [self.pattern.name.center(2 * (end_col - start_col))]
+    print(display)
     for row in range(start_row, end_row):
       display_row = [
         ALIVE if (row, col) in self.pattern.alive_cells else DEAD
-        for col in range(start_col, end_col):
+        for col in range(start_col, end_col)
         
       ]
       display.append(" ".join(display_row))
